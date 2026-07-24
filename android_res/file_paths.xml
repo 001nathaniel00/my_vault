@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Covers the app's whole internal files dir (getFilesDir()), which
+         is where Kivy's user_data_dir - and so hidden_media/ - lives. -->
+    <files-path name="vault_files" path="." />
+</paths>
