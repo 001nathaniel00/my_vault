@@ -11,7 +11,14 @@ jobs:
     runs-on: ubuntu-22.04
     env:
       JAVA_HOME: /usr/lib/jvm/temurin-17-jdk-amd64
-
+      # Pins pip to a known-stable version for every pip invocation in this
+      # job - including ones buildozer/python-for-android run internally in
+      # their own subprocesses (that's what PIP_CONSTRAINT is for). Works
+      # around a reproducible crash where python-for-android's own
+      # "pip install -U pip" self-upgrade breaks with:
+      #   ImportError: cannot import name 'RequirementInformation' from
+      #   'pip._vendor.resolvelib.structs'
+      PIP_CONSTRAINT: ${{ github.workspace }}/pip-constraints.txt
 
     steps:
       - name: Checkout code
@@ -26,7 +33,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
-          
+
       - name: Install Buildozer
         run: |
           pip install --upgrade Cython buildozer
@@ -39,5 +46,4 @@ jobs:
         with:
           name: secret-vault-debug-apk
           path: bin/*.apk
-
-    
+          
