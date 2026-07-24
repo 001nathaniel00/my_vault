@@ -30,7 +30,7 @@ version = 1.0
 # off to Android's own video player via an Intent - see _open_video_externally
 # in vault_app.py, and the android.res_xml / android.extra_manifest_application_arguments
 # settings below that register the FileProvider it depends on.
-requirements = python3==3.11.15,hostpython3==3.11.15,kivy==2.3.0,plyer,pillow
+requirements = python3==3.11.15,hostpython3==3.11.15,kivy==2.3.1,plyer,pillow
 
 # (str) Supported orientation
 orientation = portrait
